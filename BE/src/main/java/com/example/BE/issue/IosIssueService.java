@@ -1,9 +1,6 @@
 package com.example.BE.issue;
 
-import com.example.BE.issue.dto.Count;
-import com.example.BE.issue.dto.IosIssueResponse;
-import com.example.BE.issue.dto.IssueLabelMap;
-import com.example.BE.issue.dto.IssueSearchCondition;
+import com.example.BE.issue.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +38,13 @@ public class IosIssueService {
         }
 
         return new IosIssueResponse(new ArrayList<>(issueHashMap.values()));
+    }
+    public void createIssue(IosCreateIssueRequest createIssueRequest) {
+        Issue issue = new Issue();
+        issue.setTitle(createIssueRequest.getTitle());
+        issue.setContents(createIssueRequest.getContents());
+
+        issueRepository.createIssue(createIssueRequest);
     }
 
 }

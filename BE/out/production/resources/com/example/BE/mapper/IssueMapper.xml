@@ -97,4 +97,29 @@
         (select count(name) from MILESTONE) as milestoneCount
     </select>
 
+    <insert id="insertIssue" parameterType="IosCreateIssueRequest">
+        insert into ISSUE(user_id,title, contents, state,milestone_name)
+        values (1234, #{title}, #{contents}, true <if test="milestoneName != null">, #{milestoneName}</if>)
+
+        <selectKey keyProperty="issueNumber" resultType="int" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <insert id="insertIssueLabelRelation" parameterType="IosCreateIssueRequest">
+        insert into issue_label_relation(issue_number, label_name)
+        values
+        <foreach item="labelName" collection="labelNames" separator=",">
+             (#{issueNumber}, #{labelName})
+        </foreach>
+    </insert>
+
+    <insert id="insertAssigns" parameterType="IosCreateIssueRequest">
+        insert into ASSIGNS(issue_number, user_id)
+        values
+        <foreach item="assignee" collection="assignees"  separator=",">
+            (#{issueNumber}, #{assignee})
+        </foreach>
+    </insert>
+
 </mapper>

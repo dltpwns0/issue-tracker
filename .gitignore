@@ -116,3 +116,4 @@ BE/.gradle/7.6.1/checksums/md5-checksums.bin
 .DS_Store
 BE/src/main/resources/dummy_data.sql
 BE/src/main/resources/create_table.sql
+BE/out/production/classes/com/example/BE/issue/dto/IosCreateIssueRequest.class

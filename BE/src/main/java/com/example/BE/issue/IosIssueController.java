@@ -1,5 +1,6 @@
 package com.example.BE.issue;
 
+import com.example.BE.issue.dto.IosCreateIssueRequest;
 import com.example.BE.issue.dto.IosIssueResponse;
 import com.example.BE.issue.dto.IssueSearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class IosIssueController {
     @GetMapping(value = "/issues")
     public IosIssueResponse createIosResponse(@ModelAttribute IssueSearchCondition issueSearchCondition) {
         return issueService.findIssuesBy(issueSearchCondition);
+    }
+
+    @PostMapping(value = "/issues")
+    public void createIssue(@ModelAttribute IosCreateIssueRequest createIssueRequest) {
+        issueService.createIssue(createIssueRequest);
     }
 
 }
