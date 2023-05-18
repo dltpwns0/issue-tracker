@@ -1,5 +1,6 @@
 package com.example.BE.issue;
 
+import com.example.BE.issue.dto.IosCreateIssueRequest;
 import com.example.BE.issue.dto.IssueLabelMap;
 import com.example.BE.issue.dto.IssueSearchCondition;
 import com.example.BE.label.Label;
@@ -20,7 +21,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-@Transactional
+//@Transactional
 @SpringBootTest
 class IssueRepositoryTest {
 
@@ -114,6 +115,20 @@ class IssueRepositoryTest {
         // then
         assertThat(actualIssueLabelMap).usingRecursiveFieldByFieldElementComparator().contains(issueLabelMap1, issueLabelMap2);
 
+    }
+
+    @Test
+    public void createIssueTest() {
+
+        IosCreateIssueRequest createIssueRequest = new IosCreateIssueRequest();
+        createIssueRequest.setUserId(1);
+        createIssueRequest.setTitle("테스트 제목");
+        createIssueRequest.setContents("테스트 내용");
+        createIssueRequest.setMilestoneName("BE STEP1");
+        createIssueRequest.setLabelNames(List.of("fix", "feature"));
+        createIssueRequest.setAssignees(List.of("1234"));
+
+        issueRepository.createIssue(createIssueRequest);
     }
 
 }
