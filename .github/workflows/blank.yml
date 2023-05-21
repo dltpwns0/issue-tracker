@@ -22,7 +22,6 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: production
 
 	# 아래의 flow들이 차례대로 실행됩니다.
     steps:
