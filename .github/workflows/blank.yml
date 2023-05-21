@@ -4,6 +4,8 @@ name: Java CI with Gradle & Deploy to EC2
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
    
 # flow에서 사용할 변수 같은 느낌입니다.
 env:
