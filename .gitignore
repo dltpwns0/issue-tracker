@@ -8,3 +8,4 @@ BE/src/main/resources/application.properties
 BE/src/test/resources/application.properties
 
 .idea/workspace.xml
+test
