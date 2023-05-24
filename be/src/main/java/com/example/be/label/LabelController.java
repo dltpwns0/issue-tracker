@@ -4,10 +4,7 @@ import com.example.be.label.dto.LabelCreateFormDTO;
 import com.example.be.label.dto.LabelUpdateFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class LabelController {
@@ -20,19 +17,19 @@ public class LabelController {
     }
 
     @PostMapping("/api/label")
-    public String createLabel(@ModelAttribute LabelCreateFormDTO labelCreateFormDTO) {
+    public String createLabel(@RequestBody LabelCreateFormDTO labelCreateFormDTO) {
         if (labelService.createLabel(labelCreateFormDTO)) {
-            return "fail";
+            return "ok";
         }
-        return "ok";
+        return "fail";
     }
 
     @PutMapping("/api/label")
-    public String updateLabel(@ModelAttribute LabelUpdateFormDTO labelUpdateFormDTO) {
+    public String updateLabel(@RequestBody LabelUpdateFormDTO labelUpdateFormDTO) {
         if (labelService.updateLabel(labelUpdateFormDTO)) {
-            return "fail";
+            return "ok";
         }
-        return "ok";
+        return "fail";
     }
 
 }
