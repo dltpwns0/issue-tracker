@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Transactional
@@ -54,9 +55,14 @@ class MilestoneServiceTest {
         assertThat(milestoneService.updateMilestone(milestoneUpdateFormDTO)).isFalse();
         assertThat(milestoneService.createMilestone(milestoneCreateFormDTO)).isTrue();
         assertThat(milestoneService.updateMilestone(milestoneUpdateFormDTO)).isTrue();
-
-
     }
 
+    @Test
+    @DisplayName("마일스톤 이름을 파라미터로 받아, 마일스톤을 삭제해야한다.")
+    void deleteMilestoneTest() {
+        assertThat(milestoneService.deleteMilestone(milestoneCreateFormDTO.getName())).isFalse();
+        assertThat(milestoneService.createMilestone(milestoneCreateFormDTO)).isTrue();
+        assertThat(milestoneService.deleteMilestone(milestoneCreateFormDTO.getName())).isTrue();
+    }
 
 }

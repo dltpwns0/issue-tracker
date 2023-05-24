@@ -76,9 +76,24 @@ class MilestoneRepositoryTest {
         assertThat(actual.getName()).isEqualTo(expected.getName());
         assertThat(actual.getDescriptionForLabel()).isEqualTo(expected.getDescriptionForLabel());
         assertThat(actual.getScheduledCompletionDate()).isEqualTo(expected.getScheduledCompletionDate());
+    }
 
+    @Test
+    @DisplayName("마일스톤 이름을 파라미터로 받아, 마일스톤을 제거해야한다.")
+    void deleteTest() {
+        // when
+        Milestone milestone = new Milestone(
+                "delete test",
+                milestoneCreateFormDTO.getScheduledCompletionDate(),
+                milestoneCreateFormDTO.getDescriptionForLabel());
+        milestoneRepository.save(milestone.createEntityForInsert());
 
+        // given
+        milestoneRepository.delete(milestone);
 
+        Optional<Milestone> test = milestoneRepository.findById("delete test");
+
+        assertThat(test.isEmpty()).isTrue();
     }
 
 

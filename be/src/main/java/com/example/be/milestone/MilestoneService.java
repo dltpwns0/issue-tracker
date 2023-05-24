@@ -43,4 +43,15 @@ public class MilestoneService {
         return true;
     }
 
+    public boolean deleteMilestone(String milestoneName) {
+        // TODO : 권한을 가진 사용자만 마일스톤을 삭제할 수 있다.
+        Optional<Milestone> optionalMilestone = milestoneRepository.findById(milestoneName);
+        if (optionalMilestone.isEmpty()) {
+            return false;
+        }
+        Milestone milestone = optionalMilestone.get();
+        milestoneRepository.delete(milestone);
+        return true;
+    }
+
 }

@@ -30,4 +30,12 @@ public class MilestoneController {
         return "fail";
     }
 
+    @DeleteMapping("/api/milestone/{milestoneName}")
+    public String deleteMilestone(@PathVariable String milestoneName ) {
+        if (milestoneService.deleteMilestone(milestoneName)) {
+            return "ok";
+        }
+        return "fail";
+    }
+
 }
