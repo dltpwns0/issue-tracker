@@ -42,4 +42,15 @@ public class LabelService {
         return true;
     }
 
+    public boolean deleteLabel(String labelName) {
+        // TODO : 권한을 가진 사용자만 마일스톤을 삭제할 수 있다.
+        Optional<Label> optionalLabel = labelRepository.findById(labelName);
+        if (optionalLabel.isEmpty()) {
+            return false;
+        }
+        Label label = optionalLabel.get();
+        labelRepository.delete(label);
+        return true;
+    }
+
 }

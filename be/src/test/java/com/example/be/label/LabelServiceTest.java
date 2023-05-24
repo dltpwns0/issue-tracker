@@ -40,4 +40,12 @@ class LabelServiceTest {
         assertThat(labelService.updateLabel(labelUpdateFormDTO)).isTrue();
     }
 
+    @Test
+    @DisplayName("라벨 이름을 파라미터로 받아, 라벨을 삭제해야한다.")
+    void deleteMilestoneTest() {
+        assertThat(labelService.deleteLabel(labelCreateFormDTO.getName())).isFalse();
+        assertThat(labelService.createLabel(labelCreateFormDTO)).isTrue();
+        assertThat(labelService.deleteLabel(labelCreateFormDTO.getName())).isTrue();
+    }
+
 }

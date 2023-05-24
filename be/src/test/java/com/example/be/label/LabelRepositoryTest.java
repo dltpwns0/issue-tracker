@@ -1,6 +1,7 @@
 package com.example.be.label;
 
 import com.example.be.label.dto.LabelCreateFormDTO;
+import com.example.be.milestone.Milestone;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -80,6 +81,24 @@ class LabelRepositoryTest {
         assertThat(actual.getDescription()).isEqualTo(expected.getDescription());
         assertThat(actual.getBackgroundColor()).isEqualTo(expected.getBackgroundColor());
         assertThat(actual.getTextColor()).isEqualTo(expected.getTextColor());
+    }
+
+    @Test
+    @DisplayName("라벨 이름을 파라미터로 받아, 라벨을 제거해야한다.")
+    void deleteTest() {
+        // when
+        Label label = new Label(
+                "delete test",
+                labelCreateFormDTO.getDescription(),
+                labelCreateFormDTO.getBackgroundColor(),
+                labelCreateFormDTO.getTextColor());
+
+        // given
+        labelRepository.delete(label);
+
+        Optional<Label> test = labelRepository.findById("delete test");
+
+        assertThat(test.isEmpty()).isTrue();
     }
 
 }

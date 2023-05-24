@@ -32,4 +32,12 @@ public class LabelController {
         return "fail";
     }
 
+    @DeleteMapping("/api/label/{labelName}")
+    public String deleteMilestone(@PathVariable String labelName ) {
+        if (labelService.deleteLabel(labelName)) {
+            return "ok";
+        }
+        return "fail";
+    }
+
 }
