@@ -1,6 +1,7 @@
 package com.example.be.label;
 
 import com.example.be.label.dto.LabelCreateFormDTO;
+import com.example.be.label.dto.LabelUpdateFormDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -24,6 +25,20 @@ public class LabelService {
                 labelCreateFromDTO.getBackgroundColor(),
                 labelCreateFromDTO.getTextColor());
         labelRepository.save(label.createEntityForInsert());
+        return true;
+    }
+
+    public boolean updateLabel(LabelUpdateFormDTO labelUpdateFormDTO) {
+        Optional<Label> optionalLabel = labelRepository.findById(labelUpdateFormDTO.getName());
+        if (optionalLabel.isEmpty()) {
+            return false;
+        }
+        Label label = new Label(
+                labelUpdateFormDTO.getName(),
+                labelUpdateFormDTO.getDescription(),
+                labelUpdateFormDTO.getBackgroundColor(),
+                labelUpdateFormDTO.getTextColor());
+        labelRepository.save(label.createEntityForUpdate());
         return true;
     }
 
